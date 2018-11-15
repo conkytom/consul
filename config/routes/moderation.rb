@@ -32,4 +32,12 @@ namespace :moderation do
     put :hide, on: :member
     put :moderate, on: :collection
   end
+
+  # Create a route to hide proposals that are part of legislation processes
+  resources :processes, only: :index do
+    resources :proposals, only: :index do
+      put :hide, on: :member
+      put :moderate, on: :collection
+    end
+  end
 end
